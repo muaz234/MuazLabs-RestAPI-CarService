@@ -23,7 +23,7 @@ class CreateCarDetailsTable extends Migration
             $table->integer('current_mileage');
             $table->date('road_tax_expiry');
             $table->string('insurance_provider');
-            $table->tinyInteger('in_use');
+            $table->tinyInteger('in_use')->default(1);
             $table->timestamps();
         });
     }

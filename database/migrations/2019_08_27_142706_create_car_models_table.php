@@ -18,7 +18,7 @@ class CreateCarModelsTable extends Migration
             $table->string('name');
             $table->integer('car_brand_id');
             $table->timestamps();
-            $table->tinyInteger('active');
+            $table->tinyInteger('active')->default(1);
 
         });
     }
