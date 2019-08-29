@@ -8,4 +8,8 @@ class CarModel extends Model
 {
     //
     protected $fillable= ['name', 'car_brand_id'];
+
+    public function carBrand() {
+        return $this->belongsTo('App\CarBrand');
+    }
 }

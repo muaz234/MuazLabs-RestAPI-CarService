@@ -15,7 +15,7 @@ class CreateCarServiceRecordsTable extends Migration
     {
         Schema::create('car_service_records', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('car_detail_id');
+            $table->bigInteger('car_detail_id')->unsigned();
             $table->string('part_changed');
             $table->double('total_cost');
             $table->string('receipt');
@@ -23,6 +23,10 @@ class CreateCarServiceRecordsTable extends Migration
             $table->date('service_on');
             $table->string('remarks');
             $table->timestamps();
+        });
+
+        Schema::table('car_service_records', function($table){
+            $table->foreign('car_detail_id')->references('id')->on('car_details');
         });
     }
 

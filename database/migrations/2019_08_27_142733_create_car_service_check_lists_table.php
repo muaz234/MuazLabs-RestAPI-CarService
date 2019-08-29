@@ -13,16 +13,22 @@ class CreateCarServiceCheckListsTable extends Migration
      */
     public function up()
     {
-        Schema::create('car_service_check_lists', function (Blueprint $table) {
+        Schema::dropIfExists('car_service_check_lists');
+        Schema::create('car_service_checklists', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
             $table->integer('expected_mileage');
             $table->string('time_interval');
-            $table->integer('car_detail_id');
+            $table->bigInteger('car_detail_id')->unsigned();
             $table->string('due_on');
             $table->tinyInteger('completed');
             $table->string('remarks');
             $table->timestamps();
+        });
+
+
+        Schema::table('car_service_checklists', function ($table){
+            $table->foreign('car_detail_id')->references('id')->on('car_details')->onDelete('cascade');
         });
     }
 
