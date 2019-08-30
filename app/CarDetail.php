@@ -27,5 +27,9 @@ class CarDetail extends Model
         return $this->belongsTo('App\CarServiceCheckList');
     }
 
+    public function carServiceRecord() {
+        return $this->hasMany('App\CarServiceRecord');
+    }
+
 
 }

@@ -13,4 +13,5 @@ class CarServiceRecord extends Model
         return $this->belongsTo('App\CarDetail');
     }
 
+
 }

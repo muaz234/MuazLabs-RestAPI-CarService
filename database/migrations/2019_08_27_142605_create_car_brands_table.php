@@ -16,6 +16,9 @@ class CreateCarBrandsTable extends Migration
         Schema::create('car_brands', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('brand_name');
+            $tabld->unsignedBigInteger('car_detail_id');
+            $table->foreign('car_detail_id')->references('id')->on('car_details')->onDelete('cascade');
+
             $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
