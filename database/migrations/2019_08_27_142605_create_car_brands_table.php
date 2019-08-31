@@ -17,6 +17,8 @@ class CreateCarBrandsTable extends Migration
             $table->bigIncrements('id');
             $table->string('brand_name');
             $table->tinyInteger('active')->default(1);
+            $table->bigInteger('car_detail_id')->unsigned()->index();
+            $table->foreign('car_detail_id')->references('id')->on('car_details');
             $table->timestamps();
         });
     }

@@ -8,8 +8,8 @@ class CarDetail extends Model
 {
     //
 
-    protected $fillable = ['owner_name', 'plate_no', 'car_brand_id', 'car_model_name', 'bought_on', 'current_mileage', 
-                            'road_tax_expiry', 'insurance_provider_id', 'in_use'];
+    protected $fillable = ['owner_name', 'plate_no', 'bought_on', 'current_mileage', 
+                            'road_tax_expiry',  'in_use'];
 
     public function carBrand() {
         return $this->hasOne('App\CarBrand');
@@ -24,7 +24,7 @@ class CarDetail extends Model
     }
 
     public function carServiceChecklist() {
-        return $this->belongsTo('App\CarServiceCheckList');
+        return $this->hasMany('App\CarServiceCheckList');
     }
 
     public function carServiceRecord() {

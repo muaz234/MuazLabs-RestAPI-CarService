@@ -17,6 +17,8 @@ class CreateInsuranceProvidersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('short_name');
+            $table->bigInteger('car_detail_id')->unsigned()->index();
+            $table->foreign('car_detail_id')->references('id')->on('car_details');
             $table->tinyInteger('active');
             $table->timestamps();
         });
