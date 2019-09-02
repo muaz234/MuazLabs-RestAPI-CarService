@@ -11,16 +11,12 @@ class CarDetail extends Model
     protected $fillable = ['owner_name', 'plate_no', 'bought_on', 'current_mileage', 
                             'road_tax_expiry',  'in_use'];
 
-    public function carBrand() {
-        return $this->hasOne('App\CarBrand');
-    }
-    
     public function carModel() {
-        return $this->hasOne('App\CarModel');
+        return $this->belongsTo('App\CarModel');
     }
 
     public function insuranceProvider() {
-        return $this->hasOne('App\InsuranceProvider');
+        return $this->belongsTo('App\InsuranceProvider');
     }
 
     public function carServiceChecklist() {

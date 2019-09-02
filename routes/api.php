@@ -24,7 +24,7 @@ Route::get('car_brand/{id}', 'CarBrandController@show');
 Route::post('car_brand/add', 'CarBrandController@add');
 Route::put('car_brand/edit/{id}','CarBrandController@edit');
 Route::delete('car_brand/delete/{id}', 'CarBrandController@delete');
-Route::get('car_brand/show/cardetail/{id}', 'CarBrandController@showDetails');
+Route::get('car_brand/showAll', 'CarBrandController@showCarModel');
 
 // route for car details
 

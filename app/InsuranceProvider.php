@@ -9,6 +9,6 @@ class InsuranceProvider extends Model
     protected $fillable = ['name', 'short_name', 'active', 'car_detail_id'];
 
     public function carDetail() {
-        return $this->belongsTo('App\CarDetail');
+        return $this->hasMany('App\CarDetail');
     }
 }

@@ -9,9 +9,8 @@ class CarBrand extends Model
     //
     protected $fillable= ['brand_name', 'active'];
 
-    public function carModel() {
+    public function carModel() 
+    {
         return $this->hasMany('CarModel');
     }
-
-    
 }

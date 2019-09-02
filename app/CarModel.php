@@ -14,6 +14,6 @@ class CarModel extends Model
     }
 
     public function carDetail() {
-        return $this->belongsTo('App\CarDetail');
+        return $this->hasMany('App\CarDetail');
     }
 }

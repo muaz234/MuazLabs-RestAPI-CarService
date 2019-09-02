@@ -17,6 +17,10 @@ class CreateCarDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->string('owner_name');
             $table->string('plate_no');
+            $table->bigInteger('insurance_provider_id')->unsigned()->index();
+            $table->bigInteger('car_model_id')->unsigned()->index();
+            $table->foreign('insurance_provider_id')->references('id')->on('insurance_providers');
+            $table->foreign('car_model_id')->references('id')->on('car_models');
             $table->year('bought_on');
             $table->integer('current_mileage');
             $table->date('road_tax_expiry');
