@@ -13,7 +13,6 @@ class CreateCarServiceCheckListsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('car_service_check_lists');
         Schema::create('car_service_checklists', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
@@ -39,6 +38,9 @@ class CreateCarServiceCheckListsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('car_service_check_lists');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('car_service_checklists');
+        Schema::enableForeignKeyConstraints();
+
     }
 }

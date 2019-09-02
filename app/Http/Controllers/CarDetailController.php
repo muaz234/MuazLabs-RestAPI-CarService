@@ -9,7 +9,8 @@ class CarDetailController extends Controller
     //
 
     public function index() {
-        return response()->json(CarDetail::all());
+        $data = CarDetail::with('carBrand')->get();
+        return response()->json($data);
     }
 
     public function add(Request $request) {
@@ -27,6 +28,15 @@ class CarDetailController extends Controller
             return response()->json($carDetail);
         } else {
             return response()->json('No car details found');
+        }
+    }
+
+    public function getCarModelDetails($id) {
+        $carModel = CarDetail::findOrFail($id)->carBrand;
+        if(!empty($carModel)) {
+            return response()->json($carModel);
+        } else {
+            return response()->json('No detail was found');
         }
     }
 

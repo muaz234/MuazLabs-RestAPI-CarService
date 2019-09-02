@@ -38,13 +38,15 @@ class CarBrandController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function showDetails($id){
+     public function showCarModel(){
 
-        $car_detail = CarBrand::findOrFail($id)->carDetail;
-        if(!empty($car_detail))
+        $car_model = CarBrand::get('carModel')->get();
+        if(!empty($car_model))
         {
-            return response()->json($car_detail);
-        } else {
+            return response()->json($car_model);
+        } 
+        else 
+        {
             return response()->json('No car detail found with the ID');
         }
      }
@@ -82,7 +84,6 @@ class CarBrandController extends Controller
             $data = $request->all();
             $result['brand_name'] = $data['brand_name'];
             $result['active'] = $data['active'];
-            $result['car_detail_id'] = $data['car_detail_id'];
             $result->save($data);
             return response()->json($result);
         } else {

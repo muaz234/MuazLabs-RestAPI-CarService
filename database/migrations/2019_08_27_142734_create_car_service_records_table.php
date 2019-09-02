@@ -13,6 +13,8 @@ class CreateCarServiceRecordsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('car_service_records');
+
         Schema::create('car_service_records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('car_detail_id')->unsigned();
@@ -37,6 +39,9 @@ class CreateCarServiceRecordsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('car_service_records');
+        Schema::enableForeignKeyConstraints();
+
     }
 }
