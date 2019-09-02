@@ -44,3 +44,9 @@ Route::put('car_model/edit/{id}', 'CarModelController@edit');
 Route::delete('car_model/delete/{id}', 'CarModelController@delete');
 Route::get('car_model/show/cardetail/{id}', 'CarModelController@getCarDetail');
 Route::get('car_model/show/carbrand/{id}', 'CarModelController@getCarModel');
+
+Route::get('insurance_provider', 'InsuranceProviderController@index');
+Route::get('insurance_provider/{id}', 'InsuranceProviderController@show');
+Route::post('insurance_provider/add', 'InsuranceProviderController@add');
+Route::put('insurance_provider/edit/{id}', 'InsuranceProviderController@edit');
+Route::delete('insurance_provider/delete/{id}', 'InsuranceProviderController@delete');

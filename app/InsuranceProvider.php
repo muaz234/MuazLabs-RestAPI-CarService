@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class InsuranceProvider extends Model
 {
+    // protected $guarded = [];
     protected $fillable = ['name', 'short_name', 'active', 'car_detail_id'];
 
     public function carDetail() {

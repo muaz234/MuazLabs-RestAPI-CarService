@@ -22,7 +22,6 @@ class CarModelController extends Controller
             $carModel['name'] = $request['name'];
             $carModel['active'] = $request['active'];
             $carModel['car_brand_id'] = $request['car_brand_id'];
-            $carModel['car_detail_id'] = $request['car_detail_id'];
             $carModel->save();
             return response()->json($carModel);
         } else {
@@ -66,7 +65,7 @@ class CarModelController extends Controller
 
     public function getCarBrand($id) {
         if(!is_null($id)) {
-            $carBrand = CarBrand::findOrFail($id)->carModel;
+            $carBrand = CarModel::findOrFail($id)->carBrand;
             if(!empty($carBrand)) {
                 return response()->json($carBrand);            
             } else {
