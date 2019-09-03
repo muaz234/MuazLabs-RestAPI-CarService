@@ -50,3 +50,10 @@ Route::get('insurance_provider/{id}', 'InsuranceProviderController@show');
 Route::post('insurance_provider/add', 'InsuranceProviderController@add');
 Route::put('insurance_provider/edit/{id}', 'InsuranceProviderController@edit');
 Route::delete('insurance_provider/delete/{id}', 'InsuranceProviderController@delete');
+
+//
+Route::get('car_detail', 'CarDetailController@index');
+Route::get('car_detail/show/{id}', 'CarDetailController@show');
+Route::post('car_detail/add', 'CarDetailController@add');
+Route::put('car_detail/edit/{id}', 'CarDetailController@edit');
+Route::delete('car_detail/delete/{id}', 'CarDetailController@delete');

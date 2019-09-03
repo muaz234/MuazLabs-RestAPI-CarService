@@ -9,7 +9,7 @@ class CarDetailController extends Controller
     //
 
     public function index() {
-        $data = CarDetail::with('carBrand')->get();
+        $data = CarDetail::with('carBrand', 'insuranceProvider', 'carServiceChecklist', 'carServiceRecord')->get();
         return response()->json($data);
     }
 
@@ -23,7 +23,7 @@ class CarDetailController extends Controller
     }
 
     public function show($id) {
-        $carDetail = CarDetail::findOrFail($id);
+        $carDetail = CarDetail::with('carBrand', 'insuranceProvider', 'carServiceChecklist', 'carServiceRecord')->get($id);
         if(!empty($carDetail)){
             return response()->json($carDetail);
         } else {
@@ -31,14 +31,14 @@ class CarDetailController extends Controller
         }
     }
 
-    public function getCarModelDetails($id) {
-        $carModel = CarDetail::findOrFail($id)->carBrand;
-        if(!empty($carModel)) {
-            return response()->json($carModel);
-        } else {
-            return response()->json('No detail was found');
-        }
-    }
+    // public function getCarModelDetails($id) {
+    //     $carModel = CarDetail::findOrFail($id)->carBrand;
+    //     if(!empty($carModel)) {
+    //         return response()->json($carModel);
+    //     } else {
+    //         return response()->json('No detail was found');
+    //     }
+    // }
 
     public function edit(Request $request, $id) {
         $carDetail = CarDetail::findOrFail($id);
@@ -50,6 +50,8 @@ class CarDetailController extends Controller
             $carDetail['current_mileage'] = $data['current_mileage'];
             $carDetail['road_tax_expiry'] = $data['road_tax_expiry'];
             $carDetail['in_use'] = $data['in_use'];
+            $carDetail['car_model_id'] = $data['car_model_id'];
+            $carDetail['insurance_provider_id'] = $data['insurance_provider_id'];
             $carDetail->save($data);
             return response()->json($carDetail);
         } else {
@@ -60,7 +62,6 @@ class CarDetailController extends Controller
     public function delete($id) {
         if($id !=null){
         $carDetail = CarDetail::findOrFail($id);
-        
         if($carDetail->delete()) {
             return response()->json('Car Detail deleted successfully.');
         } else {
@@ -68,7 +69,6 @@ class CarDetailController extends Controller
             }
         }else {
             return response()->json('Unable to delete Car Detail. No Id associated');
-
         }
     }
 }
