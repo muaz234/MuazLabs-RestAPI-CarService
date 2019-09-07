@@ -14,7 +14,6 @@ $factory->define(CarDetail::class, function (Faker $faker) {
         'bought_on' => $faker->year($max='now'),
         'in_use' => 1,
         'current_mileage' => $faker->numberBetween($min=0, $max=1000000),
-
         'road_tax_expiry' => $faker->date($format = 'Y-m-d', $max = 'now', $timezone= 'Asia/Kuala_Lumpur'),
     ];
 });
