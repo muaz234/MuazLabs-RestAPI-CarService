@@ -12,7 +12,7 @@ class CarModelsSeeder extends Seeder
     public function run()
     {
         // //
-        $data = factory(App\CarModel::class, 150)->create([
+        $data = factory(App\CarModel::class, 10)->create([
             'car_brand_id' => $this->randomCarBrand(),
         ]);
 

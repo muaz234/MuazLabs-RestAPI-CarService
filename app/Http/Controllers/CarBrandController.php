@@ -40,7 +40,7 @@ class CarBrandController extends Controller
 
      public function showCarModel(){
 
-        $car_model = CarBrand::get('carModel')->get();
+        $car_model = CarBrand::with('carModel')->get();
         if(!empty($car_model))
         {
             return response()->json($car_model);
@@ -54,17 +54,12 @@ class CarBrandController extends Controller
 
     public function show($id)
     {
-        //
-        if(!is_null($id)){
             $car_brand = CarBrand::findOrFail($id);
-            if(empty($car_brand)) {
+            if(empty($car_brand)) 
+            {
                 return response()->json('No car brand found.');
             }
             return response()->json($car_brand);
-        } else {
-            return response()->json('Invalid id used.');
-        }
-         
     }
 
   
@@ -79,18 +74,16 @@ class CarBrandController extends Controller
     {
         //
         $result = App\CarBrand::findOrFail($id);
-
         if(!empty($result)) {
             $data = $request->all();
             $result['brand_name'] = $data['brand_name'];
             $result['active'] = $data['active'];
-            $result->save($data);
+            $result->update($data);
             return response()->json($result);
         } else {
             $message = 'No result found';
             return response()->json($message);
         }
-
     }
 
     /**
@@ -102,10 +95,9 @@ class CarBrandController extends Controller
     public function delete($id)
     {
         //
-
         $result = CarBrand::findOrFail($id);
-        $success = $result->delete();
-        if($success) {
+        if(!empty($result)) {
+            $result->delete();
             $message = "Delete successfully";
             return response()->json($message);
         } else {

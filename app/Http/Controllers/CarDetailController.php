@@ -50,25 +50,25 @@ class CarDetailController extends Controller
             $carDetail['current_mileage'] = $data['current_mileage'];
             $carDetail['road_tax_expiry'] = $data['road_tax_expiry'];
             $carDetail['in_use'] = $data['in_use'];
-            $carDetail['car_model_id'] = $data['car_model_id'];
-            $carDetail['insurance_provider_id'] = $data['insurance_provider_id'];
-            $carDetail->save($data);
+            // $carDetail['car_model_id'] = $data['car_model_id'];
+            // $carDetail['insurance_provider_id'] = $data['insurance_provider_id'];
+            $carDetail->update($data);
             return response()->json($carDetail);
         } else {
             return response()->json('No data found.');
         }
     }
 
-    public function delete($id) {
-        if($id !=null){
+    public function delete($id) 
+    {
         $carDetail = CarDetail::findOrFail($id);
-        if($carDetail->delete()) {
+        if(!empty($carDetail)) 
+        {
+            $carDetail->delete();
             return response()->json('Car Detail deleted successfully.');
-        } else {
+        } else 
+        {
             return response()->json('Unable to delete Car Detail.');
-            }
-        }else {
-            return response()->json('Unable to delete Car Detail. No Id associated');
         }
     }
 }

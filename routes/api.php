@@ -58,4 +58,10 @@ Route::post('car_service_record/add', 'CarServiceRecordController@add');
 Route::put('car_service_record/edit/{id}', 'CarServiceRecordController@edit');
 Route::delete('car_service_record/delete/{id}', 'CarServiceRecordController@delete');
 
+
+Route::get('car_service_checklist', 'CarServiceCheckListController@index');
+Route::get('car_service_checklist/show/{id}', 'CarServiceCheckListController@show');
+Route::post('car_service_checklist/add', 'CarServiceCheckListController@add');
+Route::put('car_service_checklist/edit/{id}', 'CarServiceCheckListController@edit');
+Route::delete('car_service_checklist/delete/{id}', 'CarServiceCheckListController@delete');
 //

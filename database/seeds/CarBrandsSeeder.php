@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CarBrandsTableSeeder extends Seeder
+class CarBrandsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class CarBrandsTableSeeder extends Seeder
     {
         //
 
-        $car_model = factory(App\CarBrand::class, 1000)->create();
+        $car_model = factory(App\CarBrand::class, 10)->create();
         // DB::table('car_brands')->insert([
         //     'brand_name' => Str::random(10),
         //      'active'  => 1,

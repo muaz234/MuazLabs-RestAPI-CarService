@@ -22,23 +22,20 @@ class CarServiceRecordController extends Controller
     }
 
     public function show($id) {
-        if(!is_null($id)) {
-            $data = CarServiceRecord::with('carDetail')->get($id);
+
+        $data = CarServiceRecord::with('carDetail')->get($id);
             if(!empty($data)){
                 return response()->json($data);
             } else {
                 return response()->json('Unable to perform request. No data found');
             }
-        } else {
-            return response()->json('Unable to fetch request. No ID passed.');
-        }
     }
 
     public function edit($id, Request $request) {
-        if(!is_null($id))
-        {
-            $data = CarServiceRecord::findOrFail($id);
-            if(!empty($data)) {
+            
+        $data = CarServiceRecord::findOrFail($id);
+            if(!empty($data)) 
+            {
                 $data->car_detail_id = $request->car_detail_id;
                 $data->part_changed = $request->part_changed;
                 $data->total_cost = $request->total_cost;
@@ -54,26 +51,18 @@ class CarServiceRecordController extends Controller
                 return response()->json('Unable to update data. Please retry.');
             }
         } 
-        else 
-        {
-            return response()->json('Unable to process your request. No id passed.');
-        }
-    }
+    
 
     public function delete($id)
     {
-        if(!is_null($id)) {
-            $data = CarServiceRecord::findOrFail($id);
-            $success = $data->delete();
-            if($success) {
+        $data = CarServiceRecord::findOrFail($id);
+            if(!empty($data)) 
+            {
+                $data->delete();
                 return response()->json('Car Service Record deleted successfully.');
-            } else {
+            } else 
+            {
                 return response()->json('Unable to delete Car Service Record');
             }
-        } else 
-        {
-            return response()->json('Unable to process your request. No ID passed.');        
-        }
-        
     }
 }

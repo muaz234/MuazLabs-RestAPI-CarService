@@ -21,22 +21,21 @@ class CarModelController extends Controller
         if(!empty($carModel)) {
             $carModel['name'] = $request['name'];
             $carModel['active'] = $request['active'];
-            $carModel['car_brand_id'] = $request['car_brand_id'];
-            $carModel->save();
+            // $carModel['car_brand_id'] = $request['car_brand_id'];
+            $carModel->update();
             return response()->json($carModel);
         } else {
             return response()->json('Unable to save data into model.');
         }
-        return response()->json('No car model were found with ID:' .$id);
     }
 
     public function delete($id) {
         $carModel = CarModel::findOrFail($id);
-        $success =  $carModel->delete();
-        if($succeess) {
+        if(!empty($carModel)) {
+            $carModel->delete();
             return response()->json('Deleted successfully');
         } else {
-            return response()->json('Unable to delete successfully');
+            return response()->json('Unable to delete successfully. Unable to retrieve data.');
         }
     }
 
@@ -50,30 +49,23 @@ class CarModelController extends Controller
     }
 
     public function getCarDetail($id) {
-        if(!is_null($id)){
+
         $carDetail = CarModel::findOrFail($id)->carDetail;
         if(!empty($carDetail)) {
             return response()->json($carDetail);
         } else {
             return response()->json('No car detail was found with associated ID');
             } 
-        } 
-        else {
-            return response()->json('ID used is invalid');
-        }
+        
     }
 
-    public function getCarBrand($id) {
-        if(!is_null($id)) {
-            $carBrand = CarModel::findOrFail($id)->carBrand;
+    public function getCarBrand($id) 
+    {
+        $carBrand = CarModel::findOrFail($id)->carBrand;
             if(!empty($carBrand)) {
                 return response()->json($carBrand);            
             } else {
                 return response()->json('No car brand data found');
             }
-        }
-        else {
-            return response()->json('ID requested is invalid.');
-        }
     }
 }
