@@ -9,7 +9,7 @@ class CarDetailController extends Controller
     //
 
     public function index() {
-        $data = CarDetail::with('carBrand', 'insuranceProvider', 'carServiceChecklist', 'carServiceRecord')->get();
+        $data = CarDetail::with('carModel', 'insuranceProvider', 'carServiceChecklist', 'carServiceRecord')->get();
         return response()->json($data);
     }
 
@@ -23,7 +23,7 @@ class CarDetailController extends Controller
     }
 
     public function show($id) {
-        $carDetail = CarDetail::with('carBrand', 'insuranceProvider', 'carServiceChecklist', 'carServiceRecord')->get($id);
+        $carDetail = CarDetail::with('carBrand', 'insuranceProvider', 'carServiceChecklist', 'carServiceRecord')->where('id', $id)->get();
         if(!empty($carDetail)){
             return response()->json($carDetail);
         } else {

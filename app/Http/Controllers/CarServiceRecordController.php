@@ -9,7 +9,7 @@ class CarServiceRecordController extends Controller
     //
 
     public function index() {
-        return response()->json(CarServiceRecord::with('carDetail')->all());
+        return response()->json(CarServiceRecord::with('carDetail')->get());
     }
 
     public function add(Request $request) {
@@ -23,7 +23,7 @@ class CarServiceRecordController extends Controller
 
     public function show($id) {
 
-        $data = CarServiceRecord::with('carDetail')->get($id);
+        $data = CarServiceRecord::with('carDetail')->where('id', $id)->get();
             if(!empty($data)){
                 return response()->json($data);
             } else {

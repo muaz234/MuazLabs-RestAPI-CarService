@@ -15,7 +15,7 @@ class CarServiceCheckListController extends Controller
 
     public function show($id) 
     {
-        return response()->json(CarServiceCheckList::with('carDetail')->get($id));
+        return response()->json(CarServiceCheckList::with('carDetail')->where('id', $id)->get());
     }
 
     public function add(Request $request) 
