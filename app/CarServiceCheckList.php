@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CarServiceCheckList extends Model
 {
     //
+    protected $table='car_service_checklists';
     protected $fillable = ['title', 'expected_mileage', 'time_interval', 'car_detail_id', 'due_on', 'completed', 'remarks'];
 
     public function carDetail() {
