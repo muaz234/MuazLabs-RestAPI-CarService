@@ -57,7 +57,7 @@ class CarServiceRecordController extends Controller
                 $data->car_detail_id = $request->car_detail_id;
                 $data->part_changed = $request->part_changed;
                 $data->total_cost = $request->total_cost;
-                $data->receipt = $request->receipt;
+                // $data->receipt = $request->receipt;
                 $data->mileage = $request->mileage;
                 $data->service_on = $request->service_on;
                 $data->remarks = $request->remarks;
@@ -76,6 +76,7 @@ class CarServiceRecordController extends Controller
         $data = CarServiceRecord::findOrFail($id);
             if(!empty($data)) 
             {
+                Storage::disk('public')->delete('receipt/'.$data->receipt); //remove receipt on delete
                 $data->delete();
                 return response()->json('Car Service Record deleted successfully.');
             } else 

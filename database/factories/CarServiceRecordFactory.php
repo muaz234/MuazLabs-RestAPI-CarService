@@ -6,7 +6,7 @@ use App\CarServiceRecord;
 use Faker\Generator as Faker;
 
 $factory->define(CarServiceRecord::class, function (Faker $faker) {
-    $file = '../../public/css';
+    // $file = '../../public/css';
     return [
         //
         'part_changed' => $faker->word ,
