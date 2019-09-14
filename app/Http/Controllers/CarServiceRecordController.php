@@ -13,7 +13,25 @@ class CarServiceRecordController extends Controller
     }
 
     public function add(Request $request) {
-        $data = CarServiceRecord::create($request->all());
+        if($request->hasFile('receipt')){
+            $allowedExtension = ['png', 'PNG', 'jpg', 'JPG'];
+            $file = $request->file('receipt');
+            $check = in_array($file->getClientOriginalExtension(),$allowedExtension);
+            if($check) {
+                $filename = $request->receipt->store('receipt', ['disk'=> 'public']);
+                $data = CarServiceRecord::create([
+                    'car_detail_id' => $request->car_detail_id,
+                    'part_changed' => $request->part_changed,
+                    'total_cost' => $request->total_cost,
+                    'receipt' => $filename,
+                    'mileage' => $request->mileage,
+                    'service_on' => $request->service_on,
+                    'remarks' => $request->remarks
+                ]);
+            }
+        } else {
+            $data = CarServiceRecord::create($request->all());
+        }
         if(!empty($data)) {
             return response()->json($data);
         } else {
